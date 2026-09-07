@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"koda-b9-go/internal/looping"
 	luaskelilingpersegipanjang "koda-b9-go/internal/luasKelilingPersegiPanjang"
+	"koda-b9-go/internal/slice"
 )
 
 func main() {
@@ -27,7 +28,7 @@ func main() {
 
 	//PANGGIL SISIPANGKA ------- MINITASK 3
 	numbers := []int{50, 75, 66, 20, 32, 90}
-	hasil := sisipAngka(numbers)
+	hasil := slice.SisipAngka(numbers)
 	fmt.Println(hasil)
 
 	for _, result := range numbers {
@@ -53,14 +54,6 @@ func main() {
 // GREET / SAPA
 func greets(name string) {
 	fmt.Printf("hello %s", name)
-}
-
-// MENYISIPKAN ANGKA DIANTARA DATA DALAM SLICE , MINITASK 3 ---------------
-func sisipAngka(originalSlice []int) []int {
-	toInsert := []int{88}
-
-	mid := len(originalSlice) / 2
-	return append(originalSlice[:mid], append(toInsert, originalSlice[mid:]...)...)
 }
 
 // STRUCT DAT RIWAYAT MINITASK 4 ---------------
