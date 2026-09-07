@@ -5,6 +5,7 @@ import (
 	"koda-b9-go/internal/looping"
 	luaskelilingpersegipanjang "koda-b9-go/internal/luasKelilingPersegiPanjang"
 	"koda-b9-go/internal/slice"
+	"koda-b9-go/internal/userdata"
 )
 
 func main() {
@@ -36,14 +37,14 @@ func main() {
 	}
 
 	// STRUCT VARIABEL DATA
-	user := UserData{
+	user := userdata.UserData{
 		Name:      "Rama Lana Komara",
 		Photo:     "rama.png",
 		Email:     "rlanakomara7@gmail.com",
 		Age:       27,
 		Phone:     "089614238447",
 		IsMarried: true,
-		Education: []Education{{
+		Education: []userdata.Education{{
 			Univ:  "Universitas PGRI,",
 			Study: "Computer Science",
 		}},
@@ -54,21 +55,4 @@ func main() {
 // GREET / SAPA
 func greets(name string) {
 	fmt.Printf("hello %s", name)
-}
-
-// STRUCT DAT RIWAYAT MINITASK 4 ---------------
-
-type UserData struct {
-	Name      string
-	Photo     string
-	Email     string
-	Age       uint8
-	Phone     string
-	IsMarried bool
-	Education []Education
-}
-
-type Education struct {
-	Univ  string
-	Study string
 }
