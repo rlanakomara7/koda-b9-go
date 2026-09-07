@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	luaskelilingpersegipanjang "koda-b9-go/internal/luasKelilingPersegiPanjang"
 )
 
 func main() {
@@ -16,7 +17,7 @@ func main() {
 	greets("rama")
 
 	//panggil LUAS & KELILING
-	Luas, Keliling := luasKeliling(5, 10)
+	Luas, Keliling := luaskelilingpersegipanjang.LuasKeliling(5, 10)
 	fmt.Println("Luas", Luas)
 	fmt.Println("Keliling", Keliling)
 
@@ -51,25 +52,6 @@ func main() {
 // GREET / SAPA
 func greets(name string) {
 	fmt.Printf("hello %s", name)
-}
-
-//HITUNG KELILING & LUAS MINITASK 1 --------------------
-
-// HITUNG LUAS
-func hitungLuas(p int16, l int16) int16 {
-	hasilLuas := p * l
-	return hasilLuas
-}
-
-// HITUNG KELILING
-func hitungKeliling(p int16, l int16) int16 {
-	hasilKeliling := 2 * (p + l)
-	return hasilKeliling
-}
-
-// LUAS DAN KELILING
-func luasKeliling(p int16, l int16) (Luas int16, Keliling int16) {
-	return hitungLuas(p, l), hitungKeliling(p, l)
 }
 
 //WINDOWS PATTERN DENGAN * MINITASK 2 --------------------
