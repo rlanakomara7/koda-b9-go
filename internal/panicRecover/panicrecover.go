@@ -8,25 +8,30 @@ import (
 
 // PANIC & RECOVER MINITASK 6
 
-func ReadFile(filepath string) ([]byte, error) {
+func ProcessFile(filepath string) {
+
+	// recover
+	defer func() {
+		if panicValue := recover(); panicValue != nil {
+			fmt.Println("Panic ditangani:", panicValue)
+			fmt.Println("Continue..")
+		}
+	}()
 
 	//buka file
 	file, err := os.Open(filepath)
 	if err != nil {
-
-		return nil, fmt.Errorf("gagal membuka file: %w", err)
+		fmt.Println("error:", err)
+		return
 	}
+	defer file.Close()
 
-	// recover
-	defer func() {
-		file.Close()
-		fmt.Println("File ditutup.")
-	}()
-
+	//baca file
 	content, err := io.ReadAll(file)
 	if err != nil {
-		panic(fmt.Sprintf("error membaca file : %v", err))
-
+		panic(err)
 	}
-	return content, nil
+	fmt.Println("Isi file:")
+	fmt.Println(string(content))
+
 }

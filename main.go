@@ -5,6 +5,7 @@ import (
 
 	"koda-b9-go/internal/looping"
 	luaskelilingpersegipanjang "koda-b9-go/internal/luasKelilingPersegiPanjang"
+	panicrecover "koda-b9-go/internal/panicRecover"
 	"koda-b9-go/internal/slice"
 	"koda-b9-go/internal/userdata"
 )
@@ -20,6 +21,7 @@ func main() {
 		fmt.Println("2. Tampilkan pola kotak")
 		fmt.Println("3. Sisipkan angka pada slice")
 		fmt.Println("4. Tampilkan data pengguna")
+		fmt.Println("5. Procces File Path")
 		fmt.Println("0. Keluar")
 		fmt.Println("==============================")
 		fmt.Print("Masukkan pilihan: ")
@@ -70,6 +72,14 @@ func main() {
 			}
 
 			fmt.Println(user)
+
+		case 5:
+			var filepath string
+
+			fmt.Print("Masukan file path:")
+			fmt.Print(&filepath)
+
+			panicrecover.ProcessFile(filepath)
 
 		case 0:
 			fmt.Println("Program selesai. Terima kasih!")
