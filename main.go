@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"koda-b9-go/internal/looping"
 	luaskelilingpersegipanjang "koda-b9-go/internal/luasKelilingPersegiPanjang"
 	"koda-b9-go/internal/slice"
@@ -9,50 +10,73 @@ import (
 )
 
 func main() {
-	// manifest
-	var hello string = "Hellow"
-	fmt.Println(hello)
+	var pilihan int
 
-	// inference
-	world := "World"
-	fmt.Println(world)
+	for {
+		fmt.Println("\n==============================")
+		fmt.Println("       MENU MINITASK GO")
+		fmt.Println("==============================")
+		fmt.Println("1. Hitung luas dan keliling")
+		fmt.Println("2. Tampilkan pola kotak")
+		fmt.Println("3. Sisipkan angka pada slice")
+		fmt.Println("4. Tampilkan data pengguna")
+		fmt.Println("0. Keluar")
+		fmt.Println("==============================")
+		fmt.Print("Masukkan pilihan: ")
 
-	greets("rama")
+		fmt.Scan(&pilihan)
+		fmt.Println()
 
-	//panggil LUAS & KELILING
-	Luas, Keliling := luaskelilingpersegipanjang.LuasKeliling(5, 10)
-	fmt.Println("Luas", Luas)
-	fmt.Println("Keliling", Keliling)
+		switch pilihan {
+		case 1:
+			// Minitask luas dan keliling
+			luas, keliling :=
+				luaskelilingpersegipanjang.LuasKeliling(5, 10)
 
-	//PANGGIL WINDOW
-	fmt.Print(looping.Window(5))
+			fmt.Println("Luas:", luas)
+			fmt.Println("Keliling:", keliling)
 
-	//PANGGIL SISIPANGKA ------- MINITASK 3
-	numbers := []int{50, 75, 66, 20, 32, 90}
-	hasil := slice.SisipAngka(numbers)
-	fmt.Println(hasil)
+		case 2:
+			// Minitask pola kotak
+			err := looping.Window(5)
 
-	for _, result := range numbers {
-		fmt.Println(result)
+			if err != nil {
+				fmt.Println("Terjadi kesalahan:", err)
+			}
+
+		case 3:
+			// Minitask slice
+			numbers := []int{50, 75, 66, 20, 32, 90}
+			hasil := slice.SisipAngka(numbers)
+
+			fmt.Println("Data awal:", numbers)
+			fmt.Println("Hasil setelah disisipkan:", hasil)
+
+		case 4:
+			// Minitask struct data pengguna
+			user := userdata.UserData{
+				Name:      "Rama Lana Komara",
+				Photo:     "rama.png",
+				Email:     "rlanakomara7@gmail.com",
+				Age:       27,
+				Phone:     "089614238447",
+				IsMarried: true,
+				Education: []userdata.Education{
+					{
+						Univ:  "Universitas PGRI",
+						Study: "Computer Science",
+					},
+				},
+			}
+
+			fmt.Println(user)
+
+		case 0:
+			fmt.Println("Program selesai. Terima kasih!")
+			return
+
+		default:
+			fmt.Println("Pilihan tidak tersedia.")
+		}
 	}
-
-	// STRUCT VARIABEL DATA
-	user := userdata.UserData{
-		Name:      "Rama Lana Komara",
-		Photo:     "rama.png",
-		Email:     "rlanakomara7@gmail.com",
-		Age:       27,
-		Phone:     "089614238447",
-		IsMarried: true,
-		Education: []userdata.Education{{
-			Univ:  "Universitas PGRI,",
-			Study: "Computer Science",
-		}},
-	}
-	fmt.Println(user)
-}
-
-// GREET / SAPA
-func greets(name string) {
-	fmt.Printf("hello %s", name)
 }
