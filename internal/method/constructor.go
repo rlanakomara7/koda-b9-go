@@ -12,7 +12,7 @@ type Person struct {
 }
 
 // CONSTRUCTOR
-func NewPerson(name string, address string, phone string) *Person {
+func NewPerson(name, address, phone string) *Person {
 	return &Person{
 		Name:    name,
 		Address: address,
@@ -38,6 +38,6 @@ func (p Person) Greet() string {
 }
 
 // METHODE SETTER
-func (p *Person) setName(name string) {
+func (p *Person) SetName(name string) {
 	p.Name = name
 }
