@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	checkout "koda-b9-go/internal/interfacee"
 	"koda-b9-go/internal/looping"
 	luaskelilingpersegipanjang "koda-b9-go/internal/luasKelilingPersegiPanjang"
 	"koda-b9-go/internal/method"
@@ -24,6 +25,7 @@ func main() {
 		fmt.Println("4. Tampilkan data pengguna")
 		fmt.Println("5. Procces File Path")
 		fmt.Println("6. Method dan constructor Person")
+		fmt.Println("7. Sistem Checkout Interface")
 		fmt.Println("0. Keluar")
 		fmt.Println("==============================")
 		fmt.Print("Masukkan pilihan: ")
@@ -97,6 +99,24 @@ func main() {
 			fmt.Println("\nSetelah nama diubah:")
 			fmt.Println(person.Greet())
 
+		case 7:
+			bank := []int{10000, 20000}
+			online := []int{15000, 25000}
+			fiktif := &checkout.Fiktif{}
+
+			if err := checkout.Checkout(checkout.Bank{}, bank); err != nil {
+				fmt.Println("Error:", err)
+			}
+
+			if err := checkout.Checkout(checkout.Online{}, online); err != nil {
+				fmt.Println("Error:", err)
+			}
+
+			if err := checkout.Checkout(fiktif, []int{5000, 10000}); err != nil {
+				fmt.Println("Error:", err)
+			}
+
+			fmt.Println("Total pembayaran fiktif:", fiktif.Total)
 		case 0:
 			fmt.Println("Program selesai. Terima kasih!")
 			return
