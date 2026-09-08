@@ -37,7 +37,7 @@ func main() {
 			fmt.Println("Keliling:", keliling)
 
 		case 2:
-			// Minitask pola kotak
+			// Minitask pola jendela
 			err := looping.Window(5)
 
 			if err != nil {
@@ -53,7 +53,7 @@ func main() {
 			fmt.Println("Hasil setelah disisipkan:", hasil)
 
 		case 4:
-			// Minitask struct data pengguna
+			// Minitask struct data user
 			user := userdata.UserData{
 				Name:      "Rama Lana Komara",
 				Photo:     "rama.png",
