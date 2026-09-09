@@ -4,7 +4,10 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sync"
+	"time"
 
+	"koda-b9-go/internal/channel"
 	"koda-b9-go/internal/goroutine"
 	checkout "koda-b9-go/internal/interfacee"
 	"koda-b9-go/internal/looping"
@@ -31,6 +34,7 @@ func main() {
 		fmt.Println("6. Method dan constructor Person")
 		fmt.Println("7. Sistem Checkout Interface")
 		fmt.Println("8. Goroutine Daily Worker")
+		fmt.Println("9. Channel Board Message")
 		fmt.Println("0. Keluar")
 		fmt.Println("==============================")
 		fmt.Print("Masukkan pilihan: ")
@@ -127,6 +131,25 @@ func main() {
 
 		case 8:
 			goroutine.DailyWorker()
+
+		case 9:
+
+			channelMessage := make(chan channel.Message)
+			var wg sync.WaitGroup
+
+			wg.Go(func() {
+				channel.WhiteBoard(channelMessage)
+			})
+
+			go func() {
+				fmt.Println("\n--- Fitur Perpesanan (Goroutine & Channel) ---")
+				channel.SendMessage(channelMessage, "Ayah", "Beli Kopi Ya")
+				channel.SendMessage(channelMessage, "Ibu", "Jangan Lupa Makan ya")
+				channel.SendMessage(channelMessage, "Adik", "Aku sudah belajar")
+
+				time.Sleep(5000 * time.Millisecond)
+				close(channelMessage)
+			}()
 
 		case 0:
 			fmt.Println("Program selesai. Terima kasih!")
