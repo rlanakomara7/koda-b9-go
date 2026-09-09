@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 
 	"koda-b9-go/internal/goroutine"
 	checkout "koda-b9-go/internal/interfacee"
@@ -15,6 +17,7 @@ import (
 
 func main() {
 	var pilihan int
+	reader := bufio.NewReader(os.Stdin)
 
 	for {
 		fmt.Println("\n==============================")
@@ -80,10 +83,12 @@ func main() {
 			fmt.Println(user)
 
 		case 5:
-			var filepath string
-
 			fmt.Print("Masukan file path:")
-			fmt.Print(&filepath)
+			filepath, err := reader.ReadString('\n')
+			if err != nil {
+				fmt.Print("Gagal Membaca input", err)
+				continue
+			}
 
 			panicrecover.ProcessFile(filepath)
 
